@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
-require('dotenf').config();
+require('dotenv').config();
 
 const indexRouter = require('./routes');
 
