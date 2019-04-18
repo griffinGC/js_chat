@@ -6,12 +6,15 @@ const session = require('express-session');
 const flash = require('connect-flash');
 require('dotenv').config();
 
+const webSocket = require('./socket');
 const indexRouter = require('./routes');
 
 const app = express();
 
 app.set('views',path.join(__dirname, 'views'));
-app.set('view-engine', 'pug');
+//오타 주의!
+app.set('view engine', 'pug');
+//8005번 포트를 지정함
 app.set('port', process.env.PORT || 8005);
 
 app.use(morgan('dev'));
@@ -45,6 +48,8 @@ app.use((err, req, res) =>{
     res.render('error');
 });
 
-app.listen(app.get('port'), () =>{
+const server = app.listen(app.get('port'), () =>{
     console.log(app.get('port'), '번 포트에서 대기중');
 });
+
+webSocket(server);

@@ -1,0 +1,17 @@
+doctype
+html
+    head
+        meta(charset='utf-8')
+        title my채팅방 
+    body
+        div f12눌러서 console탭과 network탭 확인 
+        script(src='/socket.io/socket.io.js')
+        script.
+            var socket = io.connect('http://localhost:8005',{
+                path: '/socket.io',
+            });
+            socket.on('news', function(data){
+                console.log(data);
+                //- 응답해줌 
+                socket.emit('reply', 'Hello node.js');
+            })
